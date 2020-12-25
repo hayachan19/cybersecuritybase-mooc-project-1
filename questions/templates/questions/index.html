@@ -1,0 +1,26 @@
+<h1>Questions and Answers</h1>
+<p>The exam will have the form of three open-ended questions chosen randomly from the pool below.
+    To prepare, each of the students has to contribute and write the answers for at least two selected questions.
+    The form of an answer can be either an essay or a formatted article, as long as it's easy to understand</p>
+
+{% if user.is_authenticated %}
+<p>Logged in as {{user.get_full_name}}.</p>
+<a href='logout'>Logout</a>
+{% else %}
+<p><a href='login'>Login</a></p>
+{% endif %}
+<p><a href='reserve'>Reserve question</a></p>
+<p><a href='search'>Search</a></p>
+<ol>
+    {% for entry in questions %}
+    <li>
+        {%if entry.assignee is not None%}
+        <a href='view/{{ entry.id }}'>
+        {%endif%}
+            {{ entry.title}}
+        {%if entry.assignee is not None%}
+        </a>
+        {%endif%}
+    </li>
+    {%endfor%}
+</ol>

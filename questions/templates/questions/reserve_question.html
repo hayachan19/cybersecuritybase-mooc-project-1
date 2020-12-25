@@ -1,0 +1,19 @@
+<table>
+    <tr>
+        <td>Question</td>
+        <td>Assigned to</td>
+    </tr>
+    {% for entry in questions %}
+    <tr>
+        <td>{{entry.title}}</td>
+        <td>{{entry.assignee|default:"No one"}}</td>
+        <td>
+            {% if user.is_authenticated %}
+            {% if entry.assignee is None %}
+            <a href='/questions/reserve/{{ user.get_username }}/{{entry.id}}'>take me</a>
+            {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>

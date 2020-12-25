@@ -1,0 +1,7 @@
+<p>Question: {{entry.title}}</p>
+<p>HTML is <b>allowed</b></p>
+<form method="POST">
+    {% csrf_token %}
+    <textarea name="content" rows="24" cols="80">{{entry.content}}</textarea>
+    <button>submit</button>
+</form>
